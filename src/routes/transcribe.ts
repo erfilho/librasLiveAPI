@@ -3,8 +3,8 @@ import multer from 'multer';
 
 import { openai } from '../config/openai';
 
-import { deleteFile } from '../utils/fileManager';
 import fs from 'fs';
+import { deleteFile } from '../utils/fileManager';
 
 const router = express.Router();
 
