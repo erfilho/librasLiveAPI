@@ -5,6 +5,9 @@ import welcome from '../middlewares/welcome';
 
 import transcribeRoute from '../routes/transcribe';
 import translateRoute from '../routes/translate';
+import transcriptionRoute from '../routes/transription';
+
+import loginRoute from '../routes/login'
 
 const app = express();
 
@@ -15,5 +18,7 @@ app.use('/', welcome);
 
 app.use('/transcribe', transcribeRoute);
 app.use('/translate', translateRoute);
+app.use('/transcription', transcriptionRoute);
+app.use('/login', loginRoute);
 
 export default app;
