@@ -1,4 +1,5 @@
 import express from 'express';
+import checkToken from '../middlewares/checkToken';
 
 const router = express.Router();
 
@@ -15,7 +16,25 @@ router.get('/getAll', async (req, res) => {
 });
 
 // TODO: save one transcription for a user with all info's
-router.post('/save', async (req, res) => {});
+router.post('/recordings', checkToken, async (req: any, res: any) => {
+  const user = req.user;
+
+  if (!user) {
+    return res.status(400).json({
+      message: 'Você precisa estar locado para acessar esse recurso!',
+    });
+  }
+
+  const { audioUrl, classRef, durationSeconds, filename } = req.body;
+
+  if (!audioUrl || !classRef || !durationSeconds || !filename) {
+    return res.status(400).json({
+      message: 'Estão faltando informações, verifique e tente novamente!',
+    });
+  }
+
+  const userId = user.uid as string;
+});
 
 // TODO: Edit infos about one saved transcription
 router.put('/edit', async (req, res) => {});

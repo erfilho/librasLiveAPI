@@ -5,12 +5,11 @@ import express from 'express';
 
 import welcome from '../middlewares/welcome';
 
-// TODO: STORAGEROUTER
 // TODO: SPEECHROUTER
 // TODO: RECORDINGROUTER
+import storageRouter from '../routes/storageRouter';
 import transcribeRoute from '../routes/transcribe';
 import translateRoute from '../routes/translate';
-import transcriptionRoute from '../routes/transription';
 import userRouter from '../routes/userRouter';
 
 const app = express();
@@ -25,5 +24,6 @@ app.use('/translate', translateRoute);
 app.use('/transcription', transcriptionRoute);
 
 app.use(userRouter);
+app.use(storageRouter);
 
 export default app;
